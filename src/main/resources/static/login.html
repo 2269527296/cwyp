@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <link rel="stylesheet" href="older/css/login.css">
+</head>
+<body>
+<div class="row">
+<!--左边兔子图-->
+<div class="left-picture col-sm-4">
+<img src="older/img/home1.png">
+</div>
+<!--轮播图-->
+<div  class="slidershow middle col-sm-4">
+    <div class="sliders">
+        <input type="radio" name="r" id="r1" checked>
+        <input type="radio" name="r" id="r2">
+        <input type="radio" name="r" id="r3">
+        <input type="radio" name="r" id="r4">
+
+        <div class="slider s1" id="tb1" >
+            <img src="" alt="" id="img">
+        </div>
+        <div class="slider">
+            <img src="" alt="" id="tb2">
+        </div>
+        <div class="slider">
+            <img src="" alt="" id="tb3">
+        </div>
+        <div class="slider">
+            <img src="" alt="" id="tb4">
+        </div>
+    </div>
+<!--    <div class="navigation">-->
+<!--        <label for="r1" class="bar"></label>-->
+<!--        <label for="r2" class="bar"></label>-->
+<!--        <label for="r3" class="bar"></label>-->
+<!--        <label for="r4" class="bar"></label>-->
+<!--    </div>-->
+</div>
+<!--右边兔子图-->
+<div class="right-picture col-sm-4">
+    <img src="older/img/home1.png">
+</div>
+</div>
+<!--输入框-->
+<div class="input-picture">
+    <br>
+    <button onclick="jump()" id="login">
+        &nbsp;&nbsp;&nbsp;<img src="older/img/login.jpg" height="80px" width="150px">
+    </button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button onclick="scode()">
+        &nbsp;&nbsp;&nbsp;<img src="older/img/jilu.jpg" height="80px" width="150px">
+    </button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="index/homeknow.html">
+        &nbsp;&nbsp;&nbsp;<img src="older/img/know.jpg" height="80px" width="150px">
+    </a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button >
+        &nbsp;&nbsp;&nbsp;<img src="older/img/manage.jpg" height="80px" width="150px">
+    </button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button>
+        &nbsp;&nbsp;&nbsp;<img src="older/img/wishtomorrow.jpg" height="80px" width="150px">
+    </button>
+    <br><br>
+    <a href="index/findfriend.html"><img src="older/img/jiaoyouluntan.jpg" height="250px" width="250px"></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="index/gamesend.html"><img src="older/img/shangjiatuijie.jpg" height="250px" width="250px"></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="index/cateupload.html"><img src="older/img/peiwancate.jpg" height="250px" width="250px"></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="index/foodupload.html"><img src="older/img/shopping.jpg" height="250px" width="250px"></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="index/view.html"><img src="older/img/goodfengjing.jpg" height="250px" width="250px"></a>
+</div>
+
+<!-- 遮罩层 -->
+<div class="modal" id="modal" >
+    <div class="container" style="height: 280px;width: 400px;background: url('https://wzxcwyp.mynatapp.cc/imgs/upload/xiaoyi2.jpg')">
+        <!-- 关闭 -->
+        <div class="close" onclick="refugelogin()">
+            X
+        </div>
+            <form id="form1" method="post" name="myform">
+                <font color="yellow" size="5">
+                    登录橙往，以享更多权益
+                </font>
+                <br><br><br><br><br>
+                        <code><b>账号</b></code>
+                        <input id="name" name="name" type="text" class="form-control" /><br><br>
+                        <code><b>密码</b></code>
+                        <input id="password" name="password" type="password" class="form-control" /><br><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<input class="btn-success" type="button" onclick="denglu()" value="登录"/>
+                        &nbsp;&nbsp;
+                        <input class="btn-success" type="button" onclick="haofan()" value="注册"/>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+<script src="older/js/jquery1.js"></script>
+<script src="older/js/login.js"></script>
+
+</html>

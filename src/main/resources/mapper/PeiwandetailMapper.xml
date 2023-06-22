@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.PeiwandetailMapper">
+  <resultMap id="BaseResultMap" type="com.abc.pojo.Peiwandetail">
+    <!--@mbg.generated-->
+    <!--@Table peiwandetail-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="peiwanname" jdbcType="VARCHAR" property="peiwanname" />
+    <result column="peiwanprice" jdbcType="VARCHAR" property="peiwanprice" />
+    <result column="peiwanintroduce" jdbcType="VARCHAR" property="peiwanintroduce" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, peiwanname, peiwanprice, peiwanintroduce
+  </sql>
+</mapper>

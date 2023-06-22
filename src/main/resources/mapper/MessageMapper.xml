@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.MessageMapper">
+  <resultMap id="BaseResultMap" type="com.abc.pojo.Message">
+    <!--@mbg.generated-->
+    <!--@Table message-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="infomation" jdbcType="VARCHAR" property="infomation" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, username, infomation
+  </sql>
+</mapper>

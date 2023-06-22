@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <!-- 页面meta -->
+
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>橙往首页详情管理</title>
+
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+
+    <!-- 引入样式 -->
+
+    <link rel="stylesheet" href="../plugins/elementui/index.css">
+
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body class="hold-transition">
+
+<div id="app">
+
+    <div class="content-header">
+        <h1>橙往首页详情管理</h1>
+        <button onclick="usermanage()">用户管理</button>
+        <button onclick="lunbotu()">轮播图管理</button>
+        <button onclick="peiwanmanage()">陪玩管理</button>
+        <button onclick="foodmanage()">美食推介管理</button>
+        <button onclick="viewmanage()">美景管理</button>
+        <button onclick="detailmanage()">橙往首页详情管理</button>
+        <button onclick="friendmanage()">交友系统</button>
+        <button onclick="suggestmanage()">论坛意见管理</button>
+    </div>
+
+    <div class="app-container" id="user">
+        <div class="box">
+            <div class="filter-container">
+                <!--                <el-input placeholder="id" style="width: 200px;" v-model="pagination.id" class="filter-item"></el-input>-->
+                <el-input placeholder="详情信息" style="width: 200px;" v-model="pagination.know" class="filter-item"></el-input>
+                <el-button @click="getAll()" class="dalfBut">查询</el-button>
+                <el-button type="primary" class="butT" @click="handleCreate()">新建</el-button>
+            </div>
+
+            <el-table size="small" current-row-key="id" :data="dataList" stripe highlight-current-row>
+
+                <el-table-column type="index" align="center" label="序号"></el-table-column>
+
+                <el-table-column prop="know" label="菜名" align="center"></el-table-column>
+
+                <el-table-column prop="leftimg" label="左侧图" align="center">
+                    <template slot-scope="scope">
+                        <img :src="scope.row.leftimg" width="100" height="100" class="cover" />
+                    </template>
+                </el-table-column>
+                <el-table-column prop="centerimg" label="内容图1" align="center">
+                    <template slot-scope="scope">
+                        <img :src="scope.row.centerimg" width="100" height="100" class="cover" />
+                    </template>
+                </el-table-column>
+                <el-table-column prop="topimg" label="左侧图" align="center">
+                    <template slot-scope="scope">
+                        <img :src="scope.row.topimg" width="100" height="100" class="cover" />
+                    </template>
+                </el-table-column>
+                <!--                <el-table-column prop="description" label="描述" align="center"></el-table-column>-->
+
+                <el-table-column label="操作" align="center">
+
+                    <template slot-scope="scope">
+
+                        <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
+
+                        <el-button type="danger" size="mini" @click="handleDelete(scope.row)">删除</el-button>
+
+                    </template>
+
+                </el-table-column>
+
+            </el-table>
+
+            <!--分页组件-->
+            <div class="pagination-container">
+
+                <el-pagination
+                        class="pagiantion"
+
+                        @current-change="handleCurrentChange"
+
+                        :current-page="pagination.currentPage"
+
+                        :page-size="pagination.pageSize"
+
+                        layout="total, prev, pager, next, jumper"
+
+                        :total="pagination.total">
+
+                </el-pagination>
+
+            </div>
+
+            <!-- 新增标签弹层 -->
+
+            <div class="add-form">
+
+                <el-dialog title="新增图书" :visible.sync="dialogFormVisible">
+
+                    <el-form ref="dataAddForm" :model="formData" :rules="rules" label-position="right" label-width="100px">
+
+                        <el-row>
+
+                            <el-col :span="12">
+
+                                <el-form-item label="用户名" prop="name">
+
+                                    <el-input v-model="formData.name"/>
+
+                                </el-form-item>
+
+                            </el-col>
+
+                            <el-col :span="12">
+
+                                <el-form-item label="密码" prop="password">
+
+                                    <el-input v-model="formData.password"/>
+
+                                </el-form-item>
+
+                            </el-col>
+
+                        </el-row>
+
+
+                        <!--                        <el-row>-->
+
+                        <!--                            <el-col :span="24">-->
+
+                        <!--                                <el-form-item label="描述">-->
+
+                        <!--                                    <el-input v-model="formData.description" type="textarea"></el-input>-->
+
+                        <!--                                </el-form-item>-->
+
+                        <!--                            </el-col>-->
+
+                        <!--                        </el-row>-->
+
+                    </el-form>
+
+                    <div slot="footer" class="dialog-footer">
+
+                        <el-button @click="cancel()">取消</el-button>
+
+                        <el-button type="primary" @click="handleAdd()">确定</el-button>
+
+                    </div>
+
+                </el-dialog>
+
+            </div>
+
+            <!-- 新增标签弹层 -->
+
+            <div class="add-form">
+                <el-dialog title="新增美食" :visible.sync="dialogFormVisible">
+                    <div >
+                        <form action="/food/foodUpload" method="post" enctype="multipart/form-data" >
+                            菜单名称：<input type="text" name="textsrc"><br>
+                            地址：<input type="text" name="dizhi"><br>
+                            菜谱图片：<input type="file" name="imgFile"><br>
+                            工作时间：<input type="text" name="time"><br>
+                            介绍：<input type="text" name="introduce"><br>
+                            <input type="submit"  value="提交">
+                        </form>
+                    </div>
+                </el-dialog>
+            </div>
+
+
+            <!-- 编辑标签弹层 -->
+            <div class="add-form">
+                <el-dialog title="修改数据" :visible.sync="dialogFormVisible4Edit">
+                    <div>
+                        <form action="/food/foodUpload" method="post" enctype="multipart/form-data" >
+                            <input type="hidden" name="a" id="a" value="1">
+                            菜单名称：<input type="text" name="textsrc" id="textsrc"><br>
+                            地址：<input type="text" name="dizhi" id="dizhi"><br>
+                            菜谱图片：<input type="file" name="imgFile" id="imgsrc"><br>
+                            工作时间：<input type="text" name="time" id="time"><br>
+                            介绍：<input type="text" name="introduce" id="introduce"><br>
+                            <input type="submit"  value="提交">
+                        </form>
+                    </div>
+                </el-dialog>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<!-- 引入组件库 -->
+
+<script src="../js/vue.js"></script>
+
+<script src="../plugins/elementui/index.js"></script>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+
+<script src="../js/axios-0.18.0.js"></script>
+<script src="../js/jquery1.js"></script>
+<script>
+
+</script>
+
+<script>
+    var rres = ""
+    var baseUrl = "http://localhost:8080"
+    var vue = new Vue({
+        el: '#app',
+        data:{
+            dataList: [],//当前页要展示的列表数据
+            dialogFormVisible: false,//添加表单是否可见
+            dialogFormVisible4Edit:false,//编辑表单是否可见
+            formData: {},//表单数据
+            rules: {//校验规则
+                name: [{ required: true, message: '用户名为必填项', trigger: 'blur' }],
+                password: [{ required: true, message: '密码为必填项', trigger: 'blur' }]
+            },
+            pagination: {//分页相关模型数据
+                currentPage: 1,//当前页码
+                pageSize:5,//每页显示的记录数
+                total:0,//总记录数
+                know:"",
+            }
+        },
+
+        //钩子函数，VUE对象初始化完成后自动执行
+        created() {
+            // 查询全部数据
+            this.getAll();
+        },
+
+        methods: {
+            //弹出编辑窗口
+            handleUpdate(row){
+
+                // $("#textsrc").val(row.textsrc)
+                // $("#dizhi").val(row.dizhi)
+                // $("#time").val(row.time)
+                // $("#introduce").val(row.introduce)
+                this.getone(row)
+            },
+
+
+            getone(row){
+                // axios.get("/food/"+row.id).then((res) => {
+
+                //     if (res.data.flag==false && res.data.data==null) {
+                //     }
+                // }).finally(()=>{
+                //     // 2.重新加载数据
+                //     this.getAll()
+                // });
+                $.ajax({
+                    type: "POST",
+                    url: baseUrl+"/food/getone",
+                    data:{"id":row.id},
+                    success: function (response) {
+                        $("#textsrc").val(response.data.textsrc)
+                        $("#dizhi").val(response.data.dizhi)
+                        $("#time").val(response.data.time)
+                        $("#introduce").val(response.data.introduce)
+                        vue.$data.dialogFormVisible4Edit = response.flag
+                    }
+                });
+
+            },
+
+            // 分页查询
+            getAll() {
+                // 组织参数，拼接url请求地址
+                param = "?know="+this.pagination.know;
+
+                // 发送异步请求
+                axios.get("/know/" + this.pagination.currentPage + "/" + this.pagination.pageSize+param).then((res) =>{
+                    this.pagination.pagesize = res.data.data.size;
+                    this.pagination.currentPage = res.data.data.current;
+                    this.pagination.total = res.data.data.total;
+                    this.dataList =res.data.data.records
+                })
+            },
+
+
+            //切换页码
+            handleCurrentChange(currentPage) {
+                this.pagination.currentPage = currentPage;
+                //执行查询
+                this.getAll()
+            },
+
+
+
+            //弹出添加窗口
+            handleCreate() {
+                this.dialogFormVisible = true;
+                this.resetForm();
+            },
+
+            //重置表单
+            resetForm() {
+                this.formData = {};
+            },
+
+            //添加
+            handleAdd () {
+                axios.post("/user",this.formData).then((res) =>{
+                    if (res.data.flag){
+                        // 1.关闭弹框
+                        this.dialogFormVisible = false
+                        // 3.弹框成功
+                        this.$message.success(res.data.msg)
+                    }else{
+                        this.$message.error(res.data.msg);
+                    }
+                }).finally(()=>{
+                    // 2.重新加载数据
+                    this.getAll()
+                });
+            },
+
+            //取消
+            cancel(){
+                this.dialogFormVisible = false
+                this.dialogFormVisible4Edit = false
+                this.$message.info("取消成功");
+            },
+            // 删除
+            handleDelete(row) {
+                this.$confirm("提示删除","提示",{type:"info"}).then(()=>{
+                    axios.delete("/food/"+row.id).then((res) =>{
+                        if (res.data.flag==true){
+                            // 3.删除成功
+                            this.$message.success("删除成功")
+                        }else{
+                            this.$message.error("数据同步失败");
+                        }
+                    }).finally(()=>{
+                        // 2.重新加载数据
+                        this.getAll()
+                    });
+                }).catch(()=>{
+                    this.$message.info("取消成功")
+                })
+            },
+
+
+
+            //条件查询
+        }
+    })
+
+</script>
+<script>
+    function usermanage(){
+        window.location.href="cwypmanage.html"
+    };
+
+    function lunbotu(){
+        window.location.href="lunbomanage.html"
+    };
+
+    function peiwanmanage(){
+        window.location.href="peiwanmanage.html"
+    }
+    function suggestmanage(){
+        window.location.href="suggestmanage.html"
+    }
+    function viewmanage(){
+        window.location.href="viewmanage.html"
+    }
+    function foodmanage(){
+        window.location.href="foodmanage.html"
+    }
+    function friendmanage(){
+        window.location.href="friendmanage.html"
+    }
+    function detailmanage(){
+        window.location.href="homedetailmanage.html"
+    }
+</script>
+
+
+</html>

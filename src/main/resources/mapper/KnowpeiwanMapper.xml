@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.KnowpeiwanMapper">
+  <resultMap id="BaseResultMap" type="com.abc.pojo.Knowpeiwan">
+    <!--@mbg.generated-->
+    <!--@Table knowpeiwan-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="know" jdbcType="VARCHAR" property="know" />
+    <result column="centerimg" jdbcType="VARCHAR" property="centerimg" />
+    <result column="leftimg" jdbcType="VARCHAR" property="leftimg" />
+    <result column="topimg" jdbcType="VARCHAR" property="topimg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, know, centerimg, leftimg, topimg
+  </sql>
+</mapper>

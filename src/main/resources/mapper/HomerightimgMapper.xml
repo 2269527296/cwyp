@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.HomerightimgMapper">
+  <resultMap id="BaseResultMap" type="com.abc.pojo.Homerightimg">
+    <!--@mbg.generated-->
+    <!--@Table homerightimg-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="leftcenter" jdbcType="VARCHAR" property="leftcenter" />
+    <result column="rightcenter" jdbcType="VARCHAR" property="rightcenter" />
+    <result column="leftshowdown" jdbcType="VARCHAR" property="leftshowdown" />
+    <result column="rightshowdown" jdbcType="VARCHAR" property="rightshowdown" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, leftcenter, rightcenter, leftshowdown, rightshowdown
+  </sql>
+</mapper>

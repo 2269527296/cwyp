@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    function baseUrl()
+    {
+//获取当前网址，如： http://localhost:8080/myproj/view/my.jsp
+        var curWwwPath=window.document.location.href;
+//获取主机地址之后的目录，如： myproj/view/my.jsp
+        var pathName=window.document.location.pathname;
+        var pos=curWwwPath.indexOf(pathName);
+//获取主机地址，如： http://localhost:8080
+        var localhostPaht=curWwwPath.substring(0,pos);
+//获取带"/"的项目名，如：/myproj
+        var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+//得到了 http://localhost:8080/myproj
+        var realPath=localhostPaht+projectName;
+        return realPath;
+//alert(realPath);
+    }
+</script>
+<body>
+<form action="/foodUpload" method="post" enctype="multipart/form-data">
+    美食简介：<input type="text" name="introduce"> <br>
+    美食名字：<input type="text" name="textsrc"> <br>
+    美食地址：<input type="text" name="dizhi"> <br>
+    营业时间：<input type="text" name="time"> <br>
+    美食图片：<input type="file" name="imgFile"> <br>
+    <input type="submit" value="上传">
+</form>
+
+<table border="1">
+    <tr>
+        <th>美食id</th>
+        <th>美食名字</th>
+        <th>美食地址</th>
+        <th>营业时间</th>
+        <th>美食简介</th>
+        <th>美食图片</th>
+    </tr>
+    <tbody id="tb"></tbody>
+</table>
+</body>
+<script src="../older/js/jquery1.js"></script>
+<script>
+    $(function (){
+        $.ajax({
+            type:"post",
+            url:"http://localhost:8080"+"/food/query",
+            dataType:"json",
+            success:function (res){
+                var _tr = "";
+                $("#tb").empty();
+                $.each(res,function(i,v){
+                    _tr = _tr + "<tr><td>"+v.id+"</td><td>"+v.textsrc+"</td><td>"+v.dizhi+"</td><td>"+v.time+"</td><td>"+v.introduce+"</td><td><img src="+v.imgsrc+" width='50' height='50'></td></tr>"
+                })
+                $("#tb").append(_tr)
+            }
+        })
+    })
+
+</script>
+</html>

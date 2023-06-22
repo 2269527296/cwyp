@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.PeiwancateMapper">
+  <resultMap id="BaseResultMap" type="com.abc.pojo.Peiwancate">
+    <!--@mbg.generated-->
+    <!--@Table peiwancate-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="gamename" jdbcType="VARCHAR" property="gamename" />
+    <result column="peiwanname" jdbcType="VARCHAR" property="peiwanname" />
+    <result column="peiwanimage" jdbcType="VARCHAR" property="peiwanimage" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="dizhi" jdbcType="VARCHAR" property="dizhi" />
+    <result column="worktime" jdbcType="VARCHAR" property="worktime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, gamename, peiwanname, peiwanimage, phone, dizhi, worktime
+  </sql>
+</mapper>

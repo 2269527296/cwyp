@@ -1,0 +1,63 @@
+<html>
+<head>
+    <title>Title</title>
+</head>
+<script>
+    function baseUrl()
+    {
+//获取当前网址，如： http://localhost:8080/myproj/view/my.jsp
+        var curWwwPath=window.document.location.href;
+//获取主机地址之后的目录，如： myproj/view/my.jsp
+        var pathName=window.document.location.pathname;
+        var pos=curWwwPath.indexOf(pathName);
+//获取主机地址，如： http://localhost:8080
+        var localhostPaht=curWwwPath.substring(0,pos);
+//获取带"/"的项目名，如：/myproj
+        var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+//得到了 http://localhost:8080/myproj
+        var realPath=localhostPaht+projectName;
+        return realPath;
+//alert(realPath);
+    }
+</script>
+<body>
+<form action="/knowUpload" method="post" enctype="multipart/form-data">
+    上传top图片：<input type="file" name="imgFile" > <br>
+    上传left图片：<input type="file" name="imgFile" > <br>
+    上传center图片：<input type="file" name="imgFile" > <br>
+    上传简介：<input type="text" name="know" > <br>
+    <input type="submit" value="上传">
+</form>
+
+
+<table border="1">
+    <tr>
+        <th>内容图</th>
+        <th>对应图</th>
+        <th>内容图</th>
+        <th>内容</th>
+    </tr>
+    <tbody id="tb"></tbody>
+</table>
+</body>
+<script src="../older/js/jquery1.js"></script>
+<script>
+    $(function (){
+        $.ajax({
+            type:"post",
+            url:baseUrl()+"/know/query",
+            dataType:"json",
+            success:function (res){
+                var _tr = "";
+                $("#tb").empty();
+                $.each(res,function(i,v){
+                    _tr = _tr + "<tr><td><img src="+v.topimg+" width='50' height='50'></td><td><img src="+v.leftimg+" width='50' height='50'></td>" +
+                        "<td><img src="+v.centerimg+" width='50' height='50'></td><td>"+v.know+"</td></tr>"
+                })
+                $("#tb").append(_tr)
+            }
+        })
+    })
+
+</script>
+</html>

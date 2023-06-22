@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.ShoppingfoodMapper">
+  <resultMap id="BaseResultMap" type="com.abc.pojo.Shoppingfood">
+    <!--@mbg.generated-->
+    <!--@Table shoppingfood-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="imgsrc" jdbcType="VARCHAR" property="imgsrc" />
+    <result column="textsrc" jdbcType="VARCHAR" property="textsrc" />
+    <result column="dizhi" jdbcType="VARCHAR" property="dizhi" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, imgsrc, textsrc, dizhi, `time`, introduce
+  </sql>
+</mapper>
